@@ -3,10 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DemoWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Background="{DynamicResource BackgroundGradient}">
+    <Window.Resources>
+        <sys:String x:Key="strHelloWorld">Hello, World!</sys:String>
+        <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+        <x:Array x:Key="ComboBoxItems" Type="sys:String">
+            <sys:String>Item 1</sys:String>
+            <sys:String>Item 2</sys:String>
+            <sys:String>Item 3</sys:String>
+        </x:Array>
+
+        <LinearGradientBrush x:Key="BackgroundGradient">
+            <GradientStop Offset="0" Color="White"/>
+            <GradientStop Offset="0.6" Color="Green"/>
+            <GradientStop Offset="1" Color="WhiteSmoke"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    <StackPanel Margin="10" Name="pnlMainPanel" MouseUp="pnlMainPanel_MouseUp">
+        <StackPanel.Resources>
+            <sys:String x:Key="aNumber">16</sys:String>
+        </StackPanel.Resources>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextWrapping="Wrap" Text="{StaticResource strHelloWorld}" Name="Display"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Name="PosUp" MouseEnter="PosUp_MouseEnter" MouseLeave="PosUp_MouseLeave"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" TextWrapping="Wrap" Name="Display1">
+            Just another static <TextBlock Text="{StaticResource strHelloWorld}"/>
+        </TextBlock>
+        <Label Content="{StaticResource ComboBoxTitle}"/>
+        <ComboBox ItemsSource="{StaticResource ComboBoxItems}"/>
+        <Button Name="btn1" Click="btn1_Click">Click Me</Button>
+        <ListBox Name="List"/>
+    </StackPanel>
 </Window>

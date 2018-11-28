@@ -24,5 +24,31 @@ namespace DemoWPF
         {
             InitializeComponent();
         }
+
+        private void pnlMainPanel_MouseUp(object sender, MouseButtonEventArgs args)
+        {
+            MessageBox.Show($"Position {args.GetPosition(this).ToString()}, {pnlMainPanel.RenderSize}");
+        }
+
+        private void PosUp_MouseEnter(object sender, MouseEventArgs e)
+        {
+            PosUp.Background = Brushes.WhiteSmoke;
+            PosUp.Foreground = Brushes.Black;
+        }
+
+        private void PosUp_MouseLeave(object sender, MouseEventArgs e)
+        {
+            PosUp.Background = Brushes.Red;
+            PosUp.Foreground = Brushes.White;
+        }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            List.Items.Add("Hello");
+            List.Items.Add(10);
+            //List.Items.Add(pnlMainPanel.FindResource(aNumber).ToString());
+            //List.Items.Add(this.FindResource(strHelloWorld).ToString());
+            //List.Items.Add(Application.Current.FindResource(strApp));
+        }
     }
 }
