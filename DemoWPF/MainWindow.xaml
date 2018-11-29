@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DemoWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="600" Width="800"
         Background="{DynamicResource BackgroundGradient}">
     <Window.Resources>
         <sys:String x:Key="strHelloWorld">Hello, World!</sys:String>
@@ -19,19 +19,29 @@
 
         <LinearGradientBrush x:Key="BackgroundGradient">
             <GradientStop Offset="0" Color="White"/>
-            <GradientStop Offset="0.6" Color="Green"/>
-            <GradientStop Offset="1" Color="WhiteSmoke"/>
+            <GradientStop Offset="0.4" Color="Green"/>
+            <GradientStop Offset="1" Color="Yellow"/>
         </LinearGradientBrush>
     </Window.Resources>
     <StackPanel Margin="10" Name="pnlMainPanel" MouseUp="pnlMainPanel_MouseUp">
         <StackPanel.Resources>
-            <sys:String x:Key="aNumber">16</sys:String>
+            <sys:Int16 x:Key="aNumber">16</sys:Int16>
         </StackPanel.Resources>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextWrapping="Wrap" Text="{StaticResource strHelloWorld}" Name="Display"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Name="PosUp" MouseEnter="PosUp_MouseEnter" MouseLeave="PosUp_MouseLeave"/>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" TextWrapping="Wrap" Name="Display1">
-            Just another static <TextBlock Text="{StaticResource strHelloWorld}"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" TextTrimming="CharacterEllipsis" Name="Display1">
+            Just another static <TextBlock TextTrimming="CharacterEllipsis" Text="{StaticResource strHelloWorld}"/>
         </TextBlock>
+        <TextBlock>This is a <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://google.com">Google link</Hyperlink></TextBlock>
+        <Label Content="_Name:" Target="{Binding ElementName=txtName}"/>
+        <TextBox Name="txtName" KeyDown="txtName_KeyDown" SelectionChanged="txtName_SelectionChanged"/>
+        <TextBox Name="txtStatus" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"/>
+        <CheckBox Name="cbAll" IsThreeState="True" Checked="cbAll_CheckedChanged" Unchecked="cbAll_CheckedChanged">Enable all</CheckBox>
+        <StackPanel Margin="20">
+            <CheckBox Name="cbA" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature A</CheckBox>
+            <CheckBox Name="cbB" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature B</CheckBox>
+            <CheckBox Name="cbC" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature C</CheckBox>
+        </StackPanel>
         <Label Content="{StaticResource ComboBoxTitle}"/>
         <ComboBox ItemsSource="{StaticResource ComboBoxItems}"/>
         <Button Name="btn1" Click="btn1_Click">Click Me</Button>
