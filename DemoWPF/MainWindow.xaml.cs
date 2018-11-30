@@ -76,7 +76,7 @@ namespace DemoWPF
             TextBox textBox = sender as TextBox;
             if (textBox.SelectionLength > 0)
             {
-                txtStatus.Text = new StringBuilder($"Selection starts at character #{textBox.SelectionStart}\nSelection is {textBox.SelectionLength} charater(s) long\n" +
+                txtStatus.Text = new StringBuilder($"Selection starts at character #{textBox.SelectionStart+1}\nSelection is {textBox.SelectionLength} charater(s) long\n" +
                     $"Selected Text: '{textBox.SelectedText}'").ToString();
             }
         }

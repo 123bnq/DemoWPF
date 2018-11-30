@@ -42,6 +42,25 @@
             <CheckBox Name="cbB" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature B</CheckBox>
             <CheckBox Name="cbC" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature C</CheckBox>
         </StackPanel>
+        <Label FontWeight="Bold">Are you ready?</Label>
+        <RadioButton GroupName="ready">
+            <WrapPanel Background="WhiteSmoke">
+                <Image Source="Images/OK.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                <TextBlock Text="Yes" Foreground="Green"/>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton GroupName="ready">
+            <WrapPanel Background="WhiteSmoke">
+                <Image Source="Images/Cancel.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                <TextBlock Text="No" Foreground="Red"/>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton>
+            <WrapPanel Background="WhiteSmoke">
+                <Image Source="Images/Question.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                <TextBlock Text="Maybe" Foreground="Gray"/>
+            </WrapPanel>
+        </RadioButton>
         <Label Content="{StaticResource ComboBoxTitle}"/>
         <ComboBox ItemsSource="{StaticResource ComboBoxItems}"/>
         <Button Name="btn1" Click="btn1_Click">Click Me</Button>
