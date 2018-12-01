@@ -44,16 +44,48 @@ namespace DemoWPF
 
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
-            if (List.Items.Count >= 10)
+            bool differ = true;
+            string[] items = new string[List.Items.Count];
+            List.Items.CopyTo(items, 0);
+            if (List.Items.Count >= 6)
             {
                 List.Items.Clear();
             }
-            List.Items.Add(pnlMainPanel.FindResource("aNumber").ToString());
-            List.Items.Add(pnlMainPanel.FindResource("strHelloWorld").ToString());
+            if (comboBox.SelectedItem != null)
+            {
+                if (items.Length > 0)
+                {
+                    foreach (var item in items)
+                    {
+                        if (comboBox.SelectedItem.ToString() == item)
+                        {
+                            differ = false;
+                        }
+                    }
+                    if (differ)
+                    {
+                        List.Items.Add(comboBox.SelectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Existinng Item is added. Choose another Item.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    List.Items.Add(comboBox.SelectedItem);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No item is chosen. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            //List.Items.Add(pnlMainPanel.FindResource("aNumber").ToString());
+            //List.Items.Add(pnlMainPanel.FindResource("strHelloWorld").ToString());
             //List.Items.Add(pnlMainPanel.FindResource("strApp").ToString());
-            List.Items.Add(this.FindResource("strApp").ToString());
+            //List.Items.Add(this.FindResource("strApp").ToString());
             //List.Items.Add(Application.Current.FindResource("strApp"));
-            
+
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -63,7 +95,7 @@ namespace DemoWPF
 
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 e.Handled = true;
                 MessageBox.Show($"Name is set", "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -76,7 +108,7 @@ namespace DemoWPF
             TextBox textBox = sender as TextBox;
             if (textBox.SelectionLength > 0)
             {
-                txtStatus.Text = new StringBuilder($"Selection starts at character #{textBox.SelectionStart+1}\nSelection is {textBox.SelectionLength} charater(s) long\n" +
+                txtStatus.Text = new StringBuilder($"Selection starts at character #{textBox.SelectionStart + 1}\nSelection is {textBox.SelectionLength} charater(s) long\n" +
                     $"Selected Text: '{textBox.SelectedText}'").ToString();
             }
         }
@@ -92,7 +124,7 @@ namespace DemoWPF
         private void cbFeature_CheckedChanged(object sender, RoutedEventArgs e)
         {
             cbAll.IsChecked = null;
-            if((cbA.IsChecked == true) && (cbB.IsChecked==true) && (cbC.IsChecked == true))
+            if ((cbA.IsChecked == true) && (cbB.IsChecked == true) && (cbC.IsChecked == true))
             {
                 cbAll.IsChecked = true;
             }
@@ -100,6 +132,19 @@ namespace DemoWPF
             {
                 cbAll.IsChecked = false;
             }
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login pnlLogin = new Login();
+            pnlLogin.Owner = this;
+            pnlLogin.txtUser.Focus();
+            pnlLogin.ShowDialog();
+        }
+
+        private void btnClearList_Click(object sender, RoutedEventArgs e)
+        {
+            List.Items.Clear();
         }
     }
 }
