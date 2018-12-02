@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800"
         Background="{DynamicResource BackgroundGradient}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
     <Window.Resources>
         <sys:String x:Key="strHelloWorld">Hello, World!</sys:String>
         <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
@@ -28,46 +29,96 @@
         <StackPanel.Resources>
             <sys:Int16 x:Key="aNumber">16</sys:Int16>
         </StackPanel.Resources>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextWrapping="Wrap" Text="{StaticResource strHelloWorld}" Name="Display"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Name="PosUp" MouseEnter="PosUp_MouseEnter" MouseLeave="PosUp_MouseLeave"/>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" TextTrimming="CharacterEllipsis" Name="Display1">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextWrapping="Wrap" Text="{StaticResource strHelloWorld}" Name="Display"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Name="PosUp" MouseEnter="PosUp_MouseEnter" MouseLeave="PosUp_MouseLeave"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" TextTrimming="CharacterEllipsis" Name="Display1">
             Just another static <TextBlock TextTrimming="CharacterEllipsis" Text="{StaticResource strHelloWorld}"/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left">This is a <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://google.com">Google link</Hyperlink></TextBlock>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0">This is a <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://google.com">Google link</Hyperlink></TextBlock>
+        </StackPanel>
         <Label Content="_Name:" Target="{Binding ElementName=txtName}"/>
         <TextBox Name="txtName" KeyDown="txtName_KeyDown" SelectionChanged="txtName_SelectionChanged"/>
         <TextBox Name="txtStatus" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"/>
-        <WrapPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <StackPanel>
                 <CheckBox Name="cbAll" IsThreeState="True" Checked="cbAll_CheckedChanged" Unchecked="cbAll_CheckedChanged" HorizontalAlignment="Left">Enable all</CheckBox>
-                <StackPanel Margin="20,5,300,0" HorizontalAlignment="Left">
+                <StackPanel Margin="20,5,0,5" HorizontalAlignment="Left">
                     <CheckBox Name="cbA" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature A</CheckBox>
                     <CheckBox Name="cbB" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature B</CheckBox>
                     <CheckBox Name="cbC" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged">Feature C</CheckBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Label FontWeight="Bold">Are you ready?</Label>
-                <RadioButton GroupName="ready">
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+            <StackPanel Grid.Column="2">
+                <Label FontWeight="Bold" HorizontalAlignment="Left">Are you ready?</Label>
+                <RadioButton GroupName="ready" HorizontalAlignment="Left">
                     <WrapPanel Background="WhiteSmoke">
                         <Image Source="Images/OK.png" Width="16" Height="16" Margin="0,0,5,0"/>
                         <TextBlock Text="Yes" Foreground="Green"/>
                     </WrapPanel>
                 </RadioButton>
-                <RadioButton GroupName="ready">
+                <RadioButton GroupName="ready" HorizontalAlignment="Left">
                     <WrapPanel Background="WhiteSmoke">
                         <Image Source="Images/Cancel.png" Width="16" Height="16" Margin="0,0,5,0"/>
                         <TextBlock Text="No" Foreground="Red"/>
                     </WrapPanel>
                 </RadioButton>
-                <RadioButton GroupName="ready">
+                <RadioButton GroupName="ready" HorizontalAlignment="Left">
                     <WrapPanel Background="WhiteSmoke">
                         <Image Source="Images/Question.png" Width="16" Height="16" Margin="0,0,5,0"/>
                         <TextBlock Text="Maybe" Foreground="Gray"/>
                     </WrapPanel>
                 </RadioButton>
             </StackPanel>
+        </Grid>
+        <DockPanel>
+            <ToolBarTray Background="WhiteSmoke">
+                <ToolBar DockPanel.Dock="Top" Width="Auto" HorizontalAlignment="Left">
+                    <Button ToolTip="New File">
+                        <Button.Content>
+                            <Image Source="Images/Add File.png" Width="16" Height="16"/>
+                        </Button.Content>
+                    </Button>
+                </ToolBar>
+                <ToolBar DockPanel.Dock="Top" Width="Auto" HorizontalAlignment="Left">
+                    <Button ToolTip="Save">
+                        <Button.Content>
+                            <Image Source="Images/Save.png" Width="16" Height="16"/>
+                        </Button.Content>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+        </DockPanel>
+        <TextBox Name="txtInput" Margin="0,5,0,5"/>
+        <WrapPanel>
+            <TextBlock Text="Value: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding Text, ElementName=txtInput}"/>
         </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Window title:  "/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,10,0,0">
+            <TextBlock Text="Window dimensions: "/>
+            <TextBox Name="txtWidth" Text="{Binding Width, UpdateSourceTrigger=Explicit}" Width="50"/>
+            <TextBlock Text=" x "/>
+            <TextBox Name="txtHeight" Text="{Binding Height, UpdateSourceTrigger=Explicit}" Width="50"/>
+            <Button Name="BtnChange" Click="BtnChange_Click" Margin="5,0" Width="70">Change</Button>
+        </WrapPanel>
+        <DockPanel Margin="10">
+            <StackPanel DockPanel.Dock="Right" Margin="10,0,0,0">
+                <Button Name="btnAddUser" Click="btnAddUser_Click">Add User</Button>
+                <Button Name="btnChangeUSer" Click="btnChangeUSer_Click" Margin="0,5">Change User</Button>
+                <Button Name="btnDeleteUser" Click="btnDeleteUser_Click">Delete User</Button>
+            </StackPanel>
+            <ListBox Name="lbUsers" DisplayMemberPath="Name"/>
+        </DockPanel>
         <Label Content="{StaticResource ComboBoxTitle}"/>
         <ComboBox Name="comboBox" ItemsSource="{StaticResource ComboBoxItems}"/>
         <WrapPanel HorizontalAlignment="Center">
