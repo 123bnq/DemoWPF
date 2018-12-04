@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -184,6 +185,13 @@ namespace DemoWPF
             {
                 users.Remove((User)lbUsers.SelectedItem);
             }
+        }
+
+        private void BtnConvert_Click(object sender, RoutedEventArgs e)
+        {
+            Converter convertWindow = new Converter();
+            convertWindow.Owner = this;
+            convertWindow.Show();
         }
     }
 

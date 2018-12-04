@@ -140,6 +140,7 @@
                 </Button.ToolTip>
             </Button>
             <Button Name="btnLogin" Width="70" Margin="5" Click="btnLogin_Click">Login</Button>
+            <Button Name="BtnConvert" Width="70" Margin="5" Click="BtnConvert_Click">_Convert</Button>
         </WrapPanel>
         <ListBox Name="List" MaxHeight="123"/>
     </StackPanel>
