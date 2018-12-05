@@ -6,16 +6,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DemoWPF"
         mc:Ignorable="d"
-        Title="Converter" Height="300" Width="400"
+        Title="Converter" Height="300" Width="540"
         WindowStartupLocation="CenterOwner"
         Name="ConvertWnd" Background="WhiteSmoke">
     <Window.Resources>
         <local:YesNoToBooleanConverter x:Key="YesNoToBooleanConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
+        
         <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" CanExecute="NewCommand_CanExecute"/>
-        <CommandBinding Command="ApplicationCommands.Cut" Executed="CutCommand_Executed" CanExecute="CutCommand_CanExecute"/>
-        <CommandBinding Command="ApplicationCommands.Paste" Executed="PasteCommand_Executed" CanExecute="PasteCommand_CanExecute"/>
+        <!--<CommandBinding Command="ApplicationCommands.Cut" Executed="CutCommand_Executed" CanExecute="CutCommand_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Paste" Executed="PasteCommand_Executed" CanExecute="PasteCommand_CanExecute"/>-->
     </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,11 +40,11 @@
             </WrapPanel>
             <Button Margin="5" HorizontalAlignment="Center" Width="70" Command="ApplicationCommands.New">New...</Button>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Width="70" Margin="0,0,5,0" Command="ApplicationCommands.Cut">Cut</Button>
-                <Button Width="70" Margin="5,0,0,0" Command="ApplicationCommands.Paste">Paste</Button>
+                <Button Width="70" Margin="0,0,5,0" Command="ApplicationCommands.Cut" CommandTarget="{Binding ElementName=TxtB_Editor}">Cut</Button>
+                <Button Width="70" Margin="5,0,0,0" Command="ApplicationCommands.Paste" CommandTarget="{Binding ElementName=TxtB_Editor}">Paste</Button>
             </WrapPanel>
-            <TextBlock Text="{x:Static local:Converter.ClipboardText}"/>
+            <TextBlock Text="{Binding MyProperty}"/>
         </StackPanel>
-        <TextBox Grid.Column="1" Margin="10" AcceptsReturn="True" Name="TxtB_Editor"></TextBox>
+        <TextBox Grid.Column="1" Margin="10" AcceptsReturn="True" Name="TxtB_Editor" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Window>
