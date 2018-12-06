@@ -1,0 +1,20 @@
+﻿<Window x:Class="ISBNConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISBNConverter"
+        mc:Ignorable="d"
+        Title="ISBN Converter" Height="220" Width="250"
+        Background="WhiteSmoke"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10">
+        <RadioButton Margin="0,0,0,5" Name="ISBN10" HorizontalAlignment="Left">ISBN 10</RadioButton>
+        <RadioButton Margin="0,0,0,5" Name="ISBN13" HorizontalAlignment="Left">ISBN 13</RadioButton>
+        <TextBlock Text="ISBN Input: "/>
+        <TextBox Margin="5" Name="ISBNInput"></TextBox>
+        <Button Name="Convert" HorizontalAlignment="Right" Margin="5" Width="70" Click="Convert_Click">Convert</Button>
+        <TextBlock Text="ISBN Output: "/>
+        <TextBox Margin="5" Name="ISBNOutput" TextWrapping="WrapWithOverflow" IsReadOnly="True"></TextBox>
+    </StackPanel>
+</Window>
