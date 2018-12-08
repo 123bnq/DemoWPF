@@ -1,0 +1,16 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ISBN Converter" Height="220" Width="250"
+        Background="WhiteSmoke">
+  <StackPanel Margin="10">
+    <RadioButton Margin="0,0,0,5" Name="ISBN10" HorizontalAlignment="Left">ISBN 10</RadioButton>
+    <RadioButton Margin="0,0,0,5" Name="ISBN13" HorizontalAlignment="Left">ISBN 13</RadioButton>
+    <TextBlock Text="ISBN Input: "/>
+    <TextBox Margin="5" Name="ISBNInput" Text="{Binding }"></TextBox>
+    <Button Name="Convert" HorizontalAlignment="Right" Margin="5" Width="70">
+      <Button.Content>Convert</Button.Content>
+    </Button>
+    <TextBlock Text="ISBN Output: "/>
+    <TextBox Margin="5" Name="ISBNOutput" IsReadOnly="True"></TextBox>
+  </StackPanel>
+</Window>
