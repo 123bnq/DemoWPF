@@ -47,6 +47,40 @@ namespace ISBNConverter
         }
 
         /// <summary>
+        /// check the string that could be an ISBN
+        /// </summary>
+        /// <param name="ISBN">random string</param>
+        /// <returns>true - could be an ISBN</returns>
+        private bool neccessaryToBeISBN(string ISBN)
+        {
+            bool isISBN = false;
+            // Loop through each character, if the string contains forbidden ISBN character, then the string will be discarded
+            for (int i = 0; i < ISBN.Length; i++)
+            {
+                // ISBN-10 could end with letter X to replace number 10
+                if (ISBN.Length == 10 && i == 9 && (ISBN[i] == 'x' || ISBN[i] == 'X'))
+                {
+                    isISBN = true;
+                    break;
+                }
+                switch (ISBN[i])
+                {
+                    // Check if all characters are digits
+                    case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
+                        isISBN = true;
+                        break;
+                    // In case of non-digit, return false
+                    default:
+                        isISBN = false;
+                        break;
+                }
+                if (!isISBN)
+                    return isISBN;
+            }
+            return isISBN;
+        }
+
+        /// <summary>
         /// Convert ISBN-10 into ISBN-13
         /// </summary>
         /// <param name="ISBN10">Given ISBN-10</param>
@@ -74,6 +108,7 @@ namespace ISBNConverter
         {
             int sumISBN10 = 0;
             int remainder = 0;
+            int added = 0;
             string ISBN10 = ISBN13.Substring(3);
             ISBN10 = ISBN10.Remove(ISBN10.Length - 1);
 
@@ -82,48 +117,18 @@ namespace ISBNConverter
                 sumISBN10 += (ISBN10[i] - '0') * (10 - i);
             }
             remainder = sumISBN10 % 11;
-            if (11 - remainder < 10)
+            added = 11 - remainder;
+
+            // ISBN10 contains a special character ('X') for replacing number 10
+            if (added < 10)
             {
-                ISBN10 = new StringBuilder($"{ISBN10}{remainder}").ToString();
+                ISBN10 = new StringBuilder($"{ISBN10}{added}").ToString();
             }
             else
             {
                 ISBN10 = new StringBuilder($"{ISBN10}X").ToString();
             }
             return ISBN10;
-        }
-
-        /// <summary>
-        /// check the string that could be an ISBN
-        /// </summary>
-        /// <param name="ISBN">random string</param>
-        /// <returns>true - could be an ISBN</returns>
-        private bool neccessaryToBeISBN(string ISBN)
-        {
-            bool isISBN = false;
-            for (int i = 0; i < ISBN.Length; i++)
-            {
-                // ISBN-10 could end with letter X to replace number 10
-                if (ISBN.Length == 10 && i == 9 && (ISBN[i] == 'x' || ISBN[i] == 'X'))
-                {
-                    isISBN = true;
-                    break;
-                }
-                switch (ISBN[i])
-                {
-                    // Check if all characters are digits
-                    case '0':case '1':case '2':case '3':case '4':case '5':case '6':case '7':case '8':case '9':
-                        isISBN = true;
-                        break;
-                    // In case of non-digit, return false
-                    default:
-                        isISBN = false;
-                        break;
-                }
-                if (!isISBN)
-                    return isISBN;
-            }
-            return isISBN;
         }
     }
 }
