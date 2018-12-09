@@ -64,7 +64,7 @@ namespace ISBNConverter
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Wrong ISBN Type is chosen. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("The program expects ISBN10 but ISBN13 is given.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
 
                             }
@@ -76,7 +76,7 @@ namespace ISBNConverter
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Wrong ISBN Type is chosen. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("The program expects ISBN13 but ISBN10 is given.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             }
                         }
