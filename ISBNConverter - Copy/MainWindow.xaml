@@ -9,7 +9,7 @@
         Background="WhiteSmoke"
         WindowStartupLocation="CenterScreen">
     <StackPanel Margin="10">
-        <RadioButton Margin="0,0,0,5" Name="ISBN10" HorizontalAlignment="Left">ISBN 10</RadioButton>
+        <RadioButton Margin="0,0,0,5" Name="ISBN10" HorizontalAlignment="Left" IsChecked="True">ISBN 10</RadioButton>
         <RadioButton Margin="0,0,0,5" Name="ISBN13" HorizontalAlignment="Left">ISBN 13</RadioButton>
         <TextBlock Text="ISBN Input: "/>
         <TextBox Margin="5" Name="ISBNInput"></TextBox>

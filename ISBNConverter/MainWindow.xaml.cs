@@ -28,22 +28,24 @@ namespace ISBNConverter
 
         private void Convert_Click(object sender, RoutedEventArgs e)
         {
+            string inputString;
             if (string.IsNullOrWhiteSpace(ISBNInput.Text))
             {
                 MessageBox.Show("No ISBN is given. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                if (ISBNInput.Text.Length < 10 || ISBNInput.Text.Length > 13)
+                inputString = ISBNInput.Text.Replace("-", string.Empty);
+                if (inputString.Length < 10 || inputString.Length > 13)
                 {
                     MessageBox.Show("ISBN length is not exactly given. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    string input = ISBNInput.Text.Replace("-", string.Empty);
+                    
                     if ((bool)ISBN10.IsChecked || (bool)ISBN13.IsChecked)
                     {
-                        var check = cvt.CheckISBN(input);
+                        var check = cvt.CheckISBN(inputString);
                         if (check == null)
                         {
                             MessageBox.Show("ISBN length is not exactly given. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -56,9 +58,9 @@ namespace ISBNConverter
                         {
                             if ((bool)ISBN10.IsChecked)
                             {
-                                if (input.Length == 10)
+                                if (inputString.Length == 10)
                                 {
-                                    ISBNOutput.Text = cvt.ISBN10to13(input);
+                                    ISBNOutput.Text = cvt.ISBN10to13(inputString);
                                 }
                                 else
                                 {
@@ -68,9 +70,9 @@ namespace ISBNConverter
                             }
                             else
                             {
-                                if (input.Length == 13)
+                                if (inputString.Length == 13)
                                 {
-                                    ISBNOutput.Text = cvt.ISBN13to10(input);
+                                    ISBNOutput.Text = cvt.ISBN13to10(inputString);
                                 }
                                 else
                                 {
