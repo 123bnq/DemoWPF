@@ -84,7 +84,7 @@ namespace ISBNConverter
             remainder = sumISBN10 % 11;
             if (11 - remainder < 10)
             {
-                ISBN10 = new StringBuilder($"{ISBN10}{remainder}").ToString();
+                ISBN10 = new StringBuilder($"{ISBN10}{11 - remainder}").ToString();
             }
             else
             {
