@@ -17,7 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images\Add File.png">
+    <Resource Include="Images\Add File.png"/>
+    <Resource Include="Images\Cancel.png"/>
+    <Resource Include="Images\Help.png"/>
+    <Resource Include="Images\Ok.png"/>
+    <Resource Include="Images\Question.png"/>
+    <Resource Include="Images\Save.png"/>
+    <!--<None Update="Images\Add File.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\Cancel.png">
@@ -34,6 +40,6 @@
     </None>
     <None Update="Images\Save.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </None>-->
   </ItemGroup>
 </Project>
