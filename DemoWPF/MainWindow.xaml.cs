@@ -191,7 +191,14 @@ namespace DemoWPF
         {
             Converter convertWindow = new Converter();
             convertWindow.Owner = this;
-            convertWindow.Show();
+            convertWindow.ShowDialog();
+        }
+
+        private void BtnReadText_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileWindow window = new OpenFileWindow();
+            window.Owner = this;
+            window.ShowDialog();
         }
     }
 

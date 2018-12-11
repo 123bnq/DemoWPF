@@ -70,6 +70,16 @@ namespace DemoWPF
             e.CanExecute = true;
         }
 
+        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         //private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         //{
         //    TxtB_Editor.Cut();
@@ -81,15 +91,20 @@ namespace DemoWPF
         //    this.MyProperty = (TxtB_Editor != null) && (TxtB_Editor.SelectionLength > 0);
         //}
 
-        //private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    TxtB_Editor.Paste();
-        //}
+        private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TxtB_Editor.Paste();
+        }
 
-        //private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        //{
-        //    e.CanExecute = Clipboard.ContainsText();
-        //}
+        private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Clipboard.ContainsText();
+        }
+
+        private void ClearClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.Clear();
+        }
     }
 
     public class YesNoToBooleanConverter : IValueConverter
@@ -114,5 +129,17 @@ namespace DemoWPF
             }
             return "no";
         }
+    }
+
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand Exit = new RoutedUICommand(
+            "Exit", 
+            "Exit", 
+            typeof(CustomCommands), 
+            new InputGestureCollection() {
+                new KeyGesture(Key.Q, ModifierKeys.Control)
+            }
+            );
     }
 }

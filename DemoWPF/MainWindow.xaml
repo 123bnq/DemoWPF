@@ -141,6 +141,7 @@
             </Button>
             <Button Name="btnLogin" Width="70" Margin="5" Click="btnLogin_Click">Login</Button>
             <Button Name="BtnConvert" Width="70" Margin="5" Click="BtnConvert_Click">_Convert</Button>
+            <Button Name="BtnReadText" Margin="5" Click="BtnReadText_Click">Read Text File</Button>
         </WrapPanel>
         <ListBox Name="List" MaxHeight="123"/>
     </StackPanel>
