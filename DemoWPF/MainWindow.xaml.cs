@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoWPF.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace DemoWPF
 {
@@ -38,7 +40,7 @@ namespace DemoWPF
 
         private void pnlMainPanel_MouseUp(object sender, MouseButtonEventArgs args)
         {
-            MessageBox.Show($"Position {args.GetPosition(this).ToString()}, {pnlMainPanel.RenderSize}");
+            MessageBox.Show($"Position {args.GetPosition(this).ToString()}");
         }
 
         private void PosUp_MouseEnter(object sender, MouseEventArgs e)
@@ -199,6 +201,37 @@ namespace DemoWPF
             OpenFileWindow window = new OpenFileWindow();
             window.Owner = this;
             window.ShowDialog();
+        }
+
+        private void BtnEnterName_Click(object sender, RoutedEventArgs e)
+        {
+            InputDialog inputDialog = new InputDialog("Please enter your name:", "Johnny English");
+            inputDialog.Owner = this;
+            if(inputDialog.ShowDialog() == true)
+            {
+                LbName.Text = inputDialog.Answer;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
+            cm.PlacementTarget = sender as Button;
+            cm.IsOpen = true;
+        }
+
+        private void BtnTextEditor_Click(object sender, RoutedEventArgs e)
+        {
+            new TextEditor
+            {
+                Owner = this,
+                Background = Brushes.WhiteSmoke
+            }.ShowDialog();
+        }
+
+        private void BtnColorPreview_Click(object sender, RoutedEventArgs e)
+        {
+            new ColorRGBPreview() { Owner = this }.ShowDialog();
         }
     }
 

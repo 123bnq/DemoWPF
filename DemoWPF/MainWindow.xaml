@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DemoWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800"
+        Title="MainWindow" Width="800" Height="600"
         Background="{DynamicResource BackgroundGradient}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize">
@@ -24,8 +24,13 @@
             <GradientStop Offset="0.4" Color="Green"/>
             <GradientStop Offset="1" Color="Yellow"/>
         </LinearGradientBrush>
+        <ContextMenu x:Key="cmButton">
+            <MenuItem Header="Item 1"/>
+            <MenuItem Header="Item 2"/>
+            <MenuItem Header="Item 3"/>
+        </ContextMenu>
     </Window.Resources>
-    <StackPanel Margin="10" Name="pnlMainPanel" MouseUp="pnlMainPanel_MouseUp">
+    <StackPanel Margin="10" Name="pnlMainPanel">
         <StackPanel.Resources>
             <sys:Int16 x:Key="aNumber">16</sys:Int16>
         </StackPanel.Resources>
@@ -43,7 +48,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel>
@@ -75,6 +82,12 @@
                         <TextBlock Text="Maybe" Foreground="Gray"/>
                     </WrapPanel>
                 </RadioButton>
+            </StackPanel>
+            <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch"/>
+            <StackPanel Grid.Column="4" HorizontalAlignment="Center">
+                <TextBlock>Hello, my name is:</TextBlock>
+                <TextBlock Name="LbName" Margin="0,10" FontWeight="Bold" TextAlignment="Center">[No name]</TextBlock>
+                <Button Name="BtnEnterName" Click="BtnEnterName_Click">Enter Name...</Button>
             </StackPanel>
         </Grid>
         <DockPanel>
@@ -117,7 +130,14 @@
                 <Button Name="btnChangeUSer" Click="btnChangeUSer_Click" Margin="0,5">Change User</Button>
                 <Button Name="btnDeleteUser" Click="btnDeleteUser_Click">Delete User</Button>
             </StackPanel>
-            <ListBox Name="lbUsers" DisplayMemberPath="Name"/>
+            <ListBox Name="lbUsers" DisplayMemberPath="Name">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="First"/>
+                        <MenuItem Header="Second"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
         </DockPanel>
         <Label Content="{StaticResource ComboBoxTitle}"/>
         <ComboBox Name="comboBox" ItemsSource="{StaticResource ComboBoxItems}"/>
@@ -142,6 +162,9 @@
             <Button Name="btnLogin" Width="70" Margin="5" Click="btnLogin_Click">Login</Button>
             <Button Name="BtnConvert" Width="70" Margin="5" Click="BtnConvert_Click">_Convert</Button>
             <Button Name="BtnReadText" Margin="5" Click="BtnReadText_Click">Read Text File</Button>
+            <Button MinWidth="60" Content="Click" Margin="5" Click="Button_Click"/>
+            <Button Name="BtnTextEditor" Content="Text Editor" Margin="5" MinWidth="60" Click="BtnTextEditor_Click"/>
+            <Button Name="BtnColorPreview" Content="Color Preview" Margin="5" MinWidth="60" Click="BtnColorPreview_Click"/>
         </WrapPanel>
         <ListBox Name="List" MaxHeight="123"/>
     </StackPanel>

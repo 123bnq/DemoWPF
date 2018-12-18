@@ -54,7 +54,19 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="ColorRGBPreview.xaml.cs">
+      <DependentUpon>ColorRGBPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextEditor.xaml.cs">
+      <DependentUpon>TextEditor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ColorRGBPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Converter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Login.xaml">
@@ -71,6 +83,9 @@
     <Compile Include="Converter.xaml.cs">
       <DependentUpon>Converter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -79,6 +94,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OpenFileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
