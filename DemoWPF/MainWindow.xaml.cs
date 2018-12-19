@@ -233,6 +233,11 @@ namespace DemoWPF
         {
             new ColorRGBPreview() { Owner = this }.ShowDialog();
         }
+
+        private void BtnProgress_Click(object sender, RoutedEventArgs e)
+        {
+            new ProgressBarTaskOnWorkerThread() { Owner = this }.ShowDialog(); 
+        }
     }
 
     public class User : INotifyPropertyChanged

@@ -165,6 +165,7 @@
             <Button MinWidth="60" Content="Click" Margin="5" Click="Button_Click"/>
             <Button Name="BtnTextEditor" Content="Text Editor" Margin="5" MinWidth="60" Click="BtnTextEditor_Click"/>
             <Button Name="BtnColorPreview" Content="Color Preview" Margin="5" MinWidth="60" Click="BtnColorPreview_Click"/>
+            <Button Name="BtnProgress" Content="Progress Window" Margin="5" MinWidth="60" Click="BtnProgress_Click" />
         </WrapPanel>
         <ListBox Name="List" MaxHeight="123"/>
     </StackPanel>

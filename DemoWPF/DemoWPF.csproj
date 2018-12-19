@@ -57,6 +57,9 @@
     <Compile Include="ColorRGBPreview.xaml.cs">
       <DependentUpon>ColorRGBPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgressBarTaskOnWorkerThread.xaml.cs">
+      <DependentUpon>ProgressBarTaskOnWorkerThread.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OpenFileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgressBarTaskOnWorkerThread.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextEditor.xaml">

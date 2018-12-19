@@ -16,6 +16,7 @@
         <DockPanel Margin="10">
             <Label DockPanel.Dock="Left" Content="G:" FontWeight="Bold"/>
             <TextBox DockPanel.Dock="Right" Width="40" Text="{Binding ElementName=Green, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock DockPanel.Dock="Right" Text="{Binding ElementName=Green, Path=Value}"/>
             <Slider Name="Green" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="ColorSlider_ValueChanged"/>
         </DockPanel>
         <DockPanel Margin="10">
