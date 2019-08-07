@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,15 @@ namespace ISBNConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<string> ListItem = new ObservableCollection<string>();
+
         ISBNConvertLib cvt = new ISBNConvertLib();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+            List.ItemsSource = ListItem;
+            ReadItemFromText();
         }
 
         private void Convert_Click(object sender, RoutedEventArgs e)
@@ -42,7 +49,7 @@ namespace ISBNConverter
                 }
                 else
                 {
-                    
+
                     if ((bool)ISBN10.IsChecked || (bool)ISBN13.IsChecked)
                     {
                         var check = cvt.CheckISBN(inputString);
@@ -85,6 +92,19 @@ namespace ISBNConverter
                     {
                         MessageBox.Show("No ISBN Type is chosen. Please check again!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                }
+            }
+        }
+
+        private void ReadItemFromText()
+        {
+            string txtPath = System.IO.Path.Combine(AppContext.BaseDirectory, "ListItems.txt");
+
+            using (StreamReader sr = new StreamReader(txtPath))
+            {
+                while (!sr.EndOfStream)
+                {
+                    ListItem.Add(sr.ReadLine());
                 }
             }
         }
