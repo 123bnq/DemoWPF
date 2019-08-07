@@ -27,6 +27,7 @@ namespace ISBNConverter
         }
 
         // some comments
+        // more comments
         private void Convert_Click(object sender, RoutedEventArgs e)
         {
             string inputString;
